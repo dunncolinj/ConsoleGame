@@ -8,7 +8,7 @@ namespace ConsoleGame
 {
     // define any enum types needed here
 
-    class Repository
+    public class Repository
     {
 
         public List<string> _EasyWords
@@ -126,5 +126,42 @@ namespace ConsoleGame
             // display hanging apparatus
             // display body parts
         }
+
+        public void DisplayGuessed(string guessed)
+        {
+            Console.SetCursorPosition(40, 12);
+            foreach (char x in guessed)
+            {
+                Console.Write(x + " ");
+            }
+        }
+
+        public void DisplayLetters(bool[] lettersUsed)
+        {
+            Console.SetCursorPosition(14, 20);
+            Console.Write("Letters Available");
+            Console.SetCursorPosition(14, 21);
+            for (int i=0; i<26; i++)
+            {
+                char letter = (char)(65 + i);
+                if (lettersUsed[i] == false)
+                {
+                    Console.Write(letter + " ");
+                }
+                else
+                {
+                    Console.Write("  ");
+                }
+            }
+        }
+        public void YouLose()
+        {
+
+        }
+        public void YouWin()
+        {
+
+        }
+
     } // class
 } // namespace
