@@ -72,7 +72,7 @@ namespace ConsoleGame
                     }
                 }
 
-                guessed = (string)replaced ;
+                guessed = new string(replaced);
 
                 if (guessed == word)
                 {

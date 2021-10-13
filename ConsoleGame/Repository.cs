@@ -60,9 +60,12 @@ namespace ConsoleGame
                 Console.Write("Select a letter out of the alphabet:");
                 responseChar = Console.ReadKey().KeyChar;
 
-                if ((lettersUsed[(int)responseChar - 65] == false) && (responseChar >= 'A' || responseChar >= 'Z'))
+                if (responseChar >= 'A' && responseChar <= 'Z')
                 {
-                    validInput = true;
+                    if (lettersUsed[(int)responseChar - 65] == false)
+                    {
+                        validInput = true;
+                    }
                 }
             }
             return responseChar;
@@ -125,30 +128,32 @@ namespace ConsoleGame
 
             if (bodyParts >= 1) // head
             {
-                Console.SetCursorPosition(14, 4);
-                Console.Write("XXXXXX");
-                Console.SetCursorPosition(13, 5);
-                Console.Write("X o o X");
-                Console.SetCursorPosition(13, 6);
-                Console.Write("X  ^  X");
+                Console.SetCursorPosition(13, 3);
+                Console.Write("XXXXXXX");
+                Console.SetCursorPosition(12, 4);
+                Console.Write("X  o o  X");
+                Console.SetCursorPosition(12, 5);
+                Console.Write("X   ^   X");
+                Console.SetCursorPosition(12, 6);
+                Console.Write("X  /-\\  X");
                 Console.SetCursorPosition(13, 7);
-                Console.Write("X /-\\ X");
-                Console.SetCursorPosition(14, 8);
-                Console.Write("XXXXXX");
+                Console.Write("XXXXXXX");
             }
 
             if (bodyParts >= 2) // neck
             {
+                Console.SetCursorPosition(15, 8);
+                Console.Write("XXX");
                 Console.SetCursorPosition(15, 9);
-                Console.Write("XX");
-                Console.SetCursorPosition(15, 10);
-                Console.Write("XX");
+                Console.Write("XXX");
             }
 
             if (bodyParts >= 3) // torso
             {
-                Console.SetCursorPosition(11, 11);
+                Console.SetCursorPosition(11, 10);
                 Console.Write("XXXXXXXXXXX");
+                Console.SetCursorPosition(11, 11);
+                Console.Write("X         X");
                 Console.SetCursorPosition(11, 12);
                 Console.Write("X         X");
                 Console.SetCursorPosition(11, 13);
@@ -156,52 +161,50 @@ namespace ConsoleGame
                 Console.SetCursorPosition(11, 14);
                 Console.Write("X         X");
                 Console.SetCursorPosition(11, 15);
-                Console.Write("X         X");
-                Console.SetCursorPosition(11, 16);
                 Console.Write("XXXXXXXXXXX");
             }
 
             if (bodyParts >= 4) // left arm
             {
-                Console.SetCursorPosition(5, 8);
+                Console.SetCursorPosition(5, 7);
                 Console.Write("XX");
-                Console.SetCursorPosition(7, 9);
+                Console.SetCursorPosition(7, 8);
                 Console.Write("XX");
-                Console.SetCursorPosition(9, 10);
+                Console.SetCursorPosition(9, 9);
                 Console.Write("XX");
             }
 
             if (bodyParts >= 5) // right arm
             {
-                Console.SetCursorPosition(23, 10);
+                Console.SetCursorPosition(22, 9);
                 Console.Write("XX");
-                Console.SetCursorPosition(25, 9);
+                Console.SetCursorPosition(24, 8);
                 Console.Write("XX");
-                Console.SetCursorPosition(27, 8);
+                Console.SetCursorPosition(26, 7);
                 Console.Write("XX");
             }
         
             if (bodyParts >= 6) // left leg
             {
+                Console.SetCursorPosition(13, 16);
+                Console.Write("XX");
                 Console.SetCursorPosition(13, 17);
                 Console.Write("XX");
                 Console.SetCursorPosition(13, 18);
                 Console.Write("XX");
-                Console.SetCursorPosition(13, 19);
-                Console.Write("XX");
-                Console.SetCursorPosition(11, 20);
+                Console.SetCursorPosition(11, 19);
                 Console.Write("XXXX");
             }
 
             if (bodyParts >= 7) // right leg
             {
+                Console.SetCursorPosition(18, 16);
+                Console.Write("XX");
                 Console.SetCursorPosition(18, 17);
                 Console.Write("XX");
                 Console.SetCursorPosition(18, 18);
                 Console.Write("XX");
                 Console.SetCursorPosition(18, 19);
-                Console.Write("XX");
-                Console.SetCursorPosition(18, 20);
                 Console.Write("XXXX");
             }
         } //DisplayHangman
