@@ -80,7 +80,7 @@ namespace ConsoleGame
                     gameWon = true;
                 }
                 // if letter not in word, add one more body part
-                if (replacements == 0)
+                if (replacements == 0) // letter was not in the word
                 {
                     bodyParts++;
                 }
