@@ -26,22 +26,22 @@ namespace ConsoleGame
             myRepository.SeedWords(Difficulty, Words);
 
             // start game with appropriate difficulty level
-            int bodyParts = 0;
-            string word = myRepository.GetWord(Words);
-            string guessed = "";
-            bool[] lettersUsed = new bool[26];
-            bool gameWon = false;
-            int replacements;
-            char[] replaced = new char[word.Length];
+            int bodyParts = 0; // number of body parts hanging
+            string word = myRepository.GetWord(Words); // word for player to guess
+            string guessed = ""; // player's guess - starts out blank
+            bool[] lettersUsed = new bool[26]; // used to track what letters have been guessed
+            bool gameWon = false; // win-lose status
+            int replacements; // how many letters replaced during a guess
+            char[] replaced = new char[word.Length]; // character array in which letters get replaced
 
-            for (int x=0; x<26; x++)
+            for (int x=0; x<26; x++) // initialize letters used array
             {
                 lettersUsed[x] = false;
             }
 
-            foreach (char x in word)
+            foreach (char x in word) // initialize player's guess to underscores
             {
-                guessed = guessed + "-";
+                guessed = guessed + "_";
             }
 
             // main game loop
@@ -59,11 +59,11 @@ namespace ConsoleGame
                 // get letter from user
                 char letter = myRepository.getLetter(lettersUsed);
 
-                lettersUsed[(int)letter - 65] = true; // mark selected letter as used
+                lettersUsed[(int)letter - 65] = true; // convert ASCII index to array index; mark selected letter as used
 
                 replacements = 0;
 
-                for (int i=0; i<word.Length; i++)
+                for (int i=0; i<word.Length; i++) // find occurrences of letter in word and add to player's guess
                 {
                     if (letter == word[i])
                     {
@@ -72,7 +72,7 @@ namespace ConsoleGame
                     }
                 }
 
-                guessed = new string(replaced);
+                guessed = new string(replaced); // convert character array to string
 
                 if (guessed == word)
                 {
@@ -89,7 +89,7 @@ namespace ConsoleGame
                 // this gets checked at the start of the loop
             } // main game loop
 
-            // if out of the loop, determine if player won or lost
+            // game over - determine if player won or lost
             if (bodyParts >= 7)
             {
                 myRepository.DisplayHangman(bodyParts);

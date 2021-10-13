@@ -59,7 +59,6 @@ namespace ConsoleGame
             return Difficulty;
         }
 
-
         public char getLetter(bool[] lettersUsed)
         {
             bool validInput = false;
@@ -73,7 +72,7 @@ namespace ConsoleGame
                 responseChar = char.ToUpper(responseChar);
                 if (responseChar >= 'A' && responseChar <= 'Z')
                 {
-                    if (lettersUsed[(int)responseChar - 65] == false)
+                    if (lettersUsed[(int)responseChar - 65] == false) // convert AsCII index to array index
                     {
                         validInput = true;
                     }
@@ -81,7 +80,8 @@ namespace ConsoleGame
             }
 
             return responseChar;
-        }
+        } // getletter method
+
         public void SeedWords(int Difficulty, List<string> Words)
         {
             
@@ -134,7 +134,7 @@ namespace ConsoleGame
             {
                 Console.WriteLine("|");
             }
-            Console.WriteLine("|----------------");
+            Console.WriteLine("|---------------|");
 
             // display body parts
 
