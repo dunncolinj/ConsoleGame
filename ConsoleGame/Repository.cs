@@ -53,23 +53,18 @@ namespace ConsoleGame
         public char getLetter(bool[] lettersUsed)
         {
             bool validInput = false;
-            string response;
-            char responseChar;
-            do
+            char responseChar = ' ';
+            while (validInput == false)
             {
                 Console.SetCursorPosition(50, 23);
                 Console.Write("Select a letter out of the alphabet:");
-                response = Console.ReadKey().ToString();
-                response = response.ToUpper();
+                responseChar = Console.ReadKey().KeyChar;
 
-                responseChar = response[0];
-
-                if ((lettersUsed[(int)responseChar - 65]) == false && (responseChar >= 'A' || responseChar >= 'Z'))                
+                if ((lettersUsed[(int)responseChar - 65] == false) && (responseChar >= 'A' || responseChar >= 'Z'))
                 {
                     validInput = true;
                 }
             }
-            while (validInput == false);
             return responseChar;
         }
         public void SeedWords(int Difficulty, List<string> Words)
@@ -106,7 +101,6 @@ namespace ConsoleGame
             int num;
             var rand = new Random();
 
-
             num = rand.Next(Words.Count());
                     word = Words[num];
             return word;
@@ -121,7 +115,7 @@ namespace ConsoleGame
             Console.WriteLine("|===============|");
             Console.WriteLine("|               |");
             Console.WriteLine("|               |");
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 18; i++)
             {
                 Console.WriteLine("|");
             }
@@ -177,7 +171,7 @@ namespace ConsoleGame
                 Console.Write("XX");
             }
 
-            if (bodyParts <= 5) // right arm
+            if (bodyParts >= 5) // right arm
             {
                 Console.SetCursorPosition(23, 10);
                 Console.Write("XX");
@@ -214,14 +208,14 @@ namespace ConsoleGame
 
         public void YouLose()
         {
-            Console.SetCursorPosition(50, 12);
+            Console.SetCursorPosition(50, 10);
             Console.Write("You lose!");
             Console.ReadKey();
         }
 
         public void YouWin()
         {
-            Console.SetCursorPosition(50, 12);
+            Console.SetCursorPosition(50, 10);
             Console.Write("You win!");
             Console.ReadKey();
 
@@ -250,7 +244,7 @@ namespace ConsoleGame
                 }
                 else
                 {
-                    Console.Write("  ");
+                    Console.Write("_ ");
                 }
             }
         }

@@ -32,6 +32,7 @@ namespace ConsoleGame
             bool[] lettersUsed = new bool[26];
             bool gameWon = false;
             int replacements;
+            char[] replaced = new char[word.Length];
 
             for (int x=0; x<26; x++)
             {
@@ -40,7 +41,7 @@ namespace ConsoleGame
 
             foreach (char x in word)
             {
-                guessed = guessed + "_";
+                guessed = guessed + "-";
             }
 
             // main game loop
@@ -61,7 +62,6 @@ namespace ConsoleGame
                 lettersUsed[(int)letter - 65] = true; // mark selected letter as used
 
                 replacements = 0;
-                char[] replaced = new char[word.Length];
 
                 for (int i=0; i<word.Length; i++)
                 {
@@ -70,13 +70,9 @@ namespace ConsoleGame
                         replaced[i] = letter;
                         replacements++;
                     }
-                    else
-                    {
-                        replaced[i] = '_';
-                    }
                 }
 
-                guessed = string.Concat(replaced);
+                guessed = (string)replaced ;
 
                 if (guessed == word)
                 {
@@ -84,7 +80,7 @@ namespace ConsoleGame
                     gameWon = true;
                 }
                 // if letter not in word, add one more body part
-                if (replacements > 0)
+                if (replacements == 0)
                 {
                     bodyParts++;
                 }
@@ -96,10 +92,12 @@ namespace ConsoleGame
             // if out of the loop, determine if player won or lost
             if (bodyParts >= 7)
             {
+                myRepository.DisplayHangman(bodyParts);
                 myRepository.YouLose();
             }
             else
             {
+                myRepository.DisplayGuessed(guessed);
                 myRepository.YouWin();
             }
 
