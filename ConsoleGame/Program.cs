@@ -12,6 +12,7 @@ namespace ConsoleGame
         {
             // call the UI
             UI myui = new UI();
+            myui.Game();
         }
     }
 }

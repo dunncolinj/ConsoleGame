@@ -15,14 +15,19 @@ namespace ConsoleGame
             Repository myRepository = new Repository();
 
             // display "Hangman" title screen
+            myRepository.TitleScreen();
 
             // prompt user to select difficulty level
             Console.Clear();
             int Difficulty = myRepository.getDifficulty();
 
+            List<string> Words = new List<string>();
+
+            myRepository.SeedWords(Difficulty, Words);
+
             // start game with appropriate difficulty level
             int bodyParts = 0;
-            string word = myRepository.GetWord(Difficulty);
+            string word = myRepository.GetWord(Words);
             string guessed = "";
             bool[] lettersUsed = new bool[26];
             bool gameWon = false;
@@ -51,19 +56,27 @@ namespace ConsoleGame
                 myRepository.DisplayLetters(lettersUsed);
 
                 // get letter from user
-                char letter = myRepository.getLetter();
+                char letter = myRepository.getLetter(lettersUsed);
 
                 lettersUsed[(int)letter - 65] = true; // mark selected letter as used
 
                 replacements = 0;
+                char[] replaced = new char[word.Length];
+
                 for (int i=0; i<word.Length; i++)
                 {
                     if (letter == word[i])
                     {
-                        guessed[i] = letter;
+                        replaced[i] = letter;
                         replacements++;
                     }
+                    else
+                    {
+                        replaced[i] = '_';
+                    }
                 }
+
+                guessed = string.Concat(replaced);
 
                 if (guessed == word)
                 {
@@ -76,7 +89,7 @@ namespace ConsoleGame
                     bodyParts++;
                 }
 
-                // if all body parts drawn (head, neck, left arm, right arm, torso, left leg, right leg) - game ends and player loses
+                // if all body parts drawn (head, neck, torso, left arm, right arm, left leg, right leg) - game ends and player loses
                 // this gets checked at the start of the loop
             } // main game loop
 
@@ -90,7 +103,6 @@ namespace ConsoleGame
                 myRepository.YouWin();
             }
 
-            Console.ReadKey();
-        } //
+        } // Game method
     } // UI class
 } // namespace
