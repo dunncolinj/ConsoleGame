@@ -13,8 +13,18 @@ namespace ConsoleGame
         public void TitleScreen()
         {
             Console.Clear();
-            Console.WriteLine("Hangman");
-            Console.WriteLine("Push a key to start");
+            Console.SetCursorPosition(20, 10);
+            Console.WriteLine("H   H   A   N   N  GGGG M M M   A   N   N");
+            Console.SetCursorPosition(20, 11);
+            Console.WriteLine("H   H  A A  NN  N G     MM MM  A A  NN  N");
+            Console.SetCursorPosition(20, 12);
+            Console.WriteLine("HHHHH AAAAA N N N G  GG M M M AAAAA N N N");
+            Console.SetCursorPosition(20, 13);
+            Console.WriteLine("H   H A   A N  NN G   G M   M A   A N  NN");
+            Console.SetCursorPosition(20, 14);
+            Console.WriteLine("H   H A   A N   N GGGG  M   M A   A N   N");
+            Console.SetCursorPosition(30, 16);
+            Console.WriteLine("Push a key to start.");
             Console.ReadKey();
         }
 
@@ -25,7 +35,7 @@ namespace ConsoleGame
 
             do
             {
-                Console.WriteLine("Choose difficulty level: 1) easy, 2) medium, 3) hard");
+                Console.WriteLine("Choose difficulty level:\n1) easy\n2) medium\n3) hard");
                 char response = Console.ReadKey().KeyChar;
                 if (response == '1' || response == '2' || response == '3')
                 {
@@ -56,10 +66,11 @@ namespace ConsoleGame
             char responseChar = ' ';
             while (validInput == false)
             {
-                Console.SetCursorPosition(50, 23);
+                Console.SetCursorPosition(10, 24);
                 Console.Write("Select a letter out of the alphabet:");
                 responseChar = Console.ReadKey().KeyChar;
 
+                responseChar = char.ToUpper(responseChar);
                 if (responseChar >= 'A' && responseChar <= 'Z')
                 {
                     if (lettersUsed[(int)responseChar - 65] == false)
@@ -68,6 +79,7 @@ namespace ConsoleGame
                     }
                 }
             }
+
             return responseChar;
         }
         public void SeedWords(int Difficulty, List<string> Words)
@@ -211,17 +223,38 @@ namespace ConsoleGame
 
         public void YouLose()
         {
+            Console.SetCursorPosition(50, 5);
+            Console.Write("Y   Y  OOO  U   U      L      OOO   SSSS EEEEE  !");
+            Console.SetCursorPosition(50, 6);
+            Console.Write(" Y Y  O   O U   U      L     O   O S     E      !");
+            Console.SetCursorPosition(50, 7);
+            Console.Write("  Y   O   O U   U      L     O   O  SSS  EEE    !");
+            Console.SetCursorPosition(50, 8);
+            Console.Write("  Y   O   O U   U      L     O   O     S E       ");
+            Console.SetCursorPosition(50, 9);
+            Console.Write("  Y    OOO   UUU       LLLLL  OOO  SSSS  EEEEE  !");
             Console.SetCursorPosition(50, 10);
-            Console.Write("You lose!");
+            Console.Write("Press a key to continue.");
             Console.ReadKey();
+            Console.Clear();
         }
 
         public void YouWin()
         {
+            Console.SetCursorPosition(50, 5);
+            Console.Write("Y   Y  OOO  U   U      W   W IIIII N   N !");
+            Console.SetCursorPosition(50, 6);
+            Console.Write(" Y Y  O   O U   U      W   W   I   NN  N !");
+            Console.SetCursorPosition(50, 7);
+            Console.Write("  Y   O   O U   U      W W W   I   N N N !");
+            Console.SetCursorPosition(50, 8);
+            Console.Write("  Y   O   O U   U      WW WW   I   N  NN  ");
+            Console.SetCursorPosition(50, 9);
+            Console.Write("  Y    OOO   UUU       W   W IIIII N   N !"); 
             Console.SetCursorPosition(50, 10);
-            Console.Write("You win!");
+            Console.Write("Press a key to continue.");
             Console.ReadKey();
-
+            Console.Clear();
         }
 
         public void DisplayGuessed(string guessed)
@@ -229,15 +262,22 @@ namespace ConsoleGame
             Console.SetCursorPosition(40, 12);
             foreach (char x in guessed)
             {
-                Console.Write(x + " ");
+                if (x == '\0')
+                {
+                    Console.Write("_ ");
+                }
+                else
+                {
+                    Console.Write(x + " ");
+                }
             }
         }
 
         public void DisplayLetters(bool[] lettersUsed)
         {
-            Console.SetCursorPosition(14, 21);
+            Console.SetCursorPosition(10, 22);
             Console.Write("Letters Available");
-            Console.SetCursorPosition(14, 22);
+            Console.SetCursorPosition(10, 23);
             for (int i=0; i<26; i++)
             {
                 char letter = (char)(65 + i);
